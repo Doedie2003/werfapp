@@ -20,47 +20,111 @@
 </header>
 
 <nav class="main-nav">
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="registratie.html">Registratie</a>
-    <a href="rapporten.html">Rapporten</a>
-    <a href="beheer.html">Beheer</a>
-    <a href="#" id="logoutButton">Uitloggen</a>
+
+    <a href="dashboard.html" class="active">
+        Dashboard
+    </a>
+
+    <a href="registratie.html">
+        Registratie
+    </a>
+
+    <a href="rapporten.html">
+        Rapporten
+    </a>
+
+    <a href="beheer.html">
+        Beheer
+    </a>
+
+    <a href="#" id="logoutButton">
+        Uitloggen
+    </a>
+
 </nav>
 
 <main class="container dashboard-page">
-    
-<section class="page-intro">
-    <h2>Overzicht</h2>
-    <p>Bekijk hier de actuele kosten en actieve werven.</p>
-</section>
-    
+
+    <section class="page-intro">
+
+        <h2>Overzicht</h2>
+
+        <p>
+            Bekijk hier de actuele kosten en actieve werven.
+        </p>
+
+    </section>
+
+
+    <!-- ==========================================
+         STATISTIEKEN
+         ========================================== -->
+
     <div class="grid">
 
         <div class="stat">
-            <h3>Kosten Vandaag</h3>
-            <p id="todayCost">€0,00</p>
+
+            <h3>
+                Kosten Vandaag
+            </h3>
+
+            <p id="todayCost">
+                €0,00
+            </p>
+
         </div>
 
-        <div class="stat">
-            <h3>Kosten Deze Week</h3>
-            <p id="weekCost">€0,00</p>
-        </div>
 
         <div class="stat">
-            <h3>Kosten Deze Maand</h3>
-            <p id="monthCost">€0,00</p>
+
+            <h3>
+                Kosten Deze Week
+            </h3>
+
+            <p id="weekCost">
+                €0,00
+            </p>
+
         </div>
 
+
         <div class="stat">
-            <h3>Actieve Sites</h3>
-            <p id="siteCount">0</p>
+
+            <h3>
+                Kosten Deze Maand
+            </h3>
+
+            <p id="monthCost">
+                €0,00
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                Actieve Sites
+            </h3>
+
+            <p id="siteCount">
+                0
+            </p>
+
         </div>
 
     </div>
 
+
+    <!-- ==========================================
+         KOSTEN PER WERF
+         ========================================== -->
+
     <div class="card">
 
-        <h2>Kosten Vandaag per Werf</h2>
+        <h2>
+            Kosten Vandaag per Werf
+        </h2>
 
         <table>
 
@@ -81,19 +145,32 @@
 
     </div>
 
+
+    <!-- ==========================================
+         SNELLE ACTIES
+         ========================================== -->
+
     <div class="card">
 
-        <h2>Snelle acties</h2>
+        <h2>
+            Snelle acties
+        </h2>
 
-        <button onclick="window.location='registratie.html'">
+        <button
+            onclick="window.location='registratie.html'"
+        >
             Nieuwe dagregistratie
         </button>
 
-        <button onclick="window.location='rapporten.html'">
+        <button
+            onclick="window.location='rapporten.html'"
+        >
             Rapporten bekijken
         </button>
 
-        <button onclick="window.location='beheer.html'">
+        <button
+            onclick="window.location='beheer.html'"
+        >
             Sites en tarieven beheren
         </button>
 
@@ -101,9 +178,16 @@
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+
+<!-- ==========================================
+     SCRIPTS
+     ========================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="js/supabase.js"></script>
+
+<script src="js/auth.js"></script>
 
 <script src="js/dashboard.js"></script>
 
