@@ -645,9 +645,11 @@ body:has(#loginButton) header h1 {
         line-height: 1.3;
     }
 
-    .stat p {
-        font-size: 21px;
-    }
+   .stat p {
+    font-size: clamp(17px, 5vw, 21px);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
 
     .card {
         padding: 18px 14px;
