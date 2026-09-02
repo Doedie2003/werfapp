@@ -1,0 +1,155 @@
+<!DOCTYPE html> <html lang="nl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>WerfApp - Registratie</title> <link rel="stylesheet" href="css/style.css"> </head> <body> <header>
+<h1>🏗️ WerfApp</h1>
+
+<p>Dagregistratie</p>
+
+</header> <nav>
+<a href="dashboard.html">Dashboard</a>
+
+<a href="registratie.html">Registratie</a>
+
+<a href="rapporten.html">Rapporten</a>
+
+<a href="beheer.html">Beheer</a>
+
+<a href="#" id="logoutButton">Uitloggen</a>
+
+</nav> <div class="container">
+<div class="card">
+
+    <h2>Nieuwe dagregistratie</h2>
+
+    <label for="workDate">
+        Datum
+    </label>
+
+    <input
+        type="date"
+        id="workDate"
+    >
+
+    <label for="site">
+        Werf
+    </label>
+
+    <select id="site">
+
+        <option value="">
+            Werf kiezen...
+        </option>
+
+    </select>
+
+    <label for="category">
+        Categorie
+    </label>
+
+    <select id="category">
+
+        <option value="">
+            Categorie kiezen...
+        </option>
+
+    </select>
+
+    <label for="quantity">
+        Aantal personen / eenheden
+    </label>
+
+    <input
+        type="number"
+        id="quantity"
+        min="0"
+        step="0.01"
+        value="1"
+    >
+
+    <label for="hours">
+        Uren per persoon / eenheid
+    </label>
+
+    <input
+        type="number"
+        id="hours"
+        min="0"
+        step="0.01"
+        value="0"
+    >
+
+    <label for="note">
+        Opmerking
+    </label>
+
+    <textarea
+        id="note"
+        rows="4"
+        placeholder="Eventuele opmerkingen..."
+    ></textarea>
+
+    <div class="card">
+
+        <h3>Berekening</h3>
+
+        <p>
+            Uurprijs:
+            <strong id="hourlyRate">€0,00</strong>
+        </p>
+
+        <p>
+            Totaal:
+            <strong id="totalCost">€0,00</strong>
+        </p>
+
+    </div>
+
+    <button id="saveButton">
+        Registratie opslaan
+    </button>
+
+    <p
+        id="message"
+        class="message"
+    ></p>
+
+</div>
+
+<div class="card">
+
+    <h2>Registraties van vandaag</h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Categorie</th>
+
+                <th>Aantal</th>
+
+                <th>Uren</th>
+
+                <th>Uurprijs</th>
+
+                <th>Totaal</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="todayTable">
+
+        </tbody>
+
+    </table>
+
+    <div
+        class="total"
+        id="todayTotal"
+    >
+        €0,00
+    </div>
+
+</div>
+
+</div> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <script src="js/supabase.js"></script> <script src="js/registratie.js"></script> </body> </html>

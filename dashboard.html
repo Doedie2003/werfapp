@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>WerfApp Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+    <h1>🏗️ WerfApp</h1>
+    <p>Dashboard</p>
+</header>
+
+<nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="registratie.html">Registratie</a>
+    <a href="rapporten.html">Rapporten</a>
+    <a href="beheer.html">Beheer</a>
+    <a href="#" id="logoutButton">Uitloggen</a>
+</nav>
+
+<div class="container">
+
+    <div class="grid">
+
+        <div class="stat">
+            <h3>Kosten Vandaag</h3>
+            <p id="todayCost">€0,00</p>
+        </div>
+
+        <div class="stat">
+            <h3>Kosten Deze Week</h3>
+            <p id="weekCost">€0,00</p>
+        </div>
+
+        <div class="stat">
+            <h3>Kosten Deze Maand</h3>
+            <p id="monthCost">€0,00</p>
+        </div>
+
+        <div class="stat">
+            <h3>Actieve Sites</h3>
+            <p id="siteCount">0</p>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Kosten Vandaag per Werf</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Werf</th>
+                    <th>Kosten</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="siteTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Snelle acties</h2>
+
+        <button onclick="window.location='registratie.html'">
+            Nieuwe dagregistratie
+        </button>
+
+        <button onclick="window.location='rapporten.html'">
+            Rapporten bekijken
+        </button>
+
+        <button onclick="window.location='beheer.html'">
+            Sites en tarieven beheren
+        </button>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

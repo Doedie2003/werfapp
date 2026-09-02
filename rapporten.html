@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>WerfApp - Rapporten</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="app-header">
+
+    <div class="header-inner">
+
+        <div>
+            <h1>🏗️ WerfApp</h1>
+            <p>Rapporten</p>
+        </div>
+
+    </div>
+
+</header>
+
+
+<nav class="main-nav">
+
+    <a href="dashboard.html">
+        Dashboard
+    </a>
+
+    <a href="registratie.html">
+        Registratie
+    </a>
+
+    <a
+        href="rapporten.html"
+        class="active"
+    >
+        Rapporten
+    </a>
+
+    <a href="beheer.html">
+        Beheer
+    </a>
+
+    <a
+        href="#"
+        id="logoutButton"
+    >
+        Uitloggen
+    </a>
+
+</nav>
+
+
+<main class="container rapporten-page">
+
+
+    <!-- ================================= -->
+    <!-- PAGINA TITEL -->
+    <!-- ================================= -->
+
+    <div class="page-intro">
+
+        <h2>Rapporten</h2>
+
+        <p>
+            Bekijk de kosten per dag, week of maand.
+        </p>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- RAPPORTFILTERS -->
+    <!-- ================================= -->
+
+    <section class="card report-filter-card">
+
+        <div class="card-header">
+
+            <div>
+                <h2>Rapportfilters</h2>
+
+                <p class="card-description">
+                    Filter de rapporten op werf en categorie.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="filter-grid">
+
+            <div class="form-group">
+
+                <label for="filterSite">
+                    Werf
+                </label>
+
+                <select id="filterSite">
+
+                    <option value="">
+                        Alle werven
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="filterCategory">
+                    Categorie
+                </label>
+
+                <select id="filterCategory">
+
+                    <option value="">
+                        Alle categorieën
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-actions">
+
+            <button
+                id="clearFiltersButton"
+                type="button"
+                class="secondary-button"
+            >
+                Filters wissen
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- DAGRAPPORT -->
+    <!-- ================================= -->
+
+    <section class="card report-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>Dagrapport</h2>
+
+                <p class="card-description">
+                    Bekijk de kosten van één specifieke dag.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-controls">
+
+            <div class="form-group">
+
+                <label for="dayDate">
+                    Kies datum
+                </label>
+
+                <input
+                    type="date"
+                    id="dayDate"
+                >
+
+            </div>
+
+
+            <div class="button-group">
+
+                <button
+                    id="loadDayButton"
+                    type="button"
+                >
+                    Dagrapport tonen
+                </button>
+
+                <button
+                    id="printDayButton"
+                    type="button"
+                    class="secondary-button"
+                >
+                    🖨️ Dagrapport printen
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Categorie
+                        </th>
+
+                        <th>
+                            Kosten
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="dayTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <span>
+                Totaal
+            </span>
+
+            <strong id="dayTotal">
+                €0,00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- WEEKRAPPORT -->
+    <!-- ================================= -->
+
+    <section class="card report-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>Weekrapport</h2>
+
+                <p class="card-description">
+                    Bekijk de kosten van maandag tot en met zondag.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-controls">
+
+            <div class="form-group">
+
+                <label for="weekDate">
+                    Kies een datum binnen de week
+                </label>
+
+                <input
+                    type="date"
+                    id="weekDate"
+                >
+
+            </div>
+
+
+            <div class="button-group">
+
+                <button
+                    id="loadWeekButton"
+                    type="button"
+                >
+                    Weekrapport tonen
+                </button>
+
+                <button
+                    id="printWeekButton"
+                    type="button"
+                    class="secondary-button"
+                >
+                    🖨️ Weekrapport printen
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Dag
+                        </th>
+
+                        <th>
+                            Datum
+                        </th>
+
+                        <th>
+                            Kosten
+                        </th>
+
+                        <th>
+                            Actie
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="weekTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <span>
+                Weektotaal
+            </span>
+
+            <strong id="weekTotal">
+                €0,00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- MAANDRAPPORT -->
+    <!-- ================================= -->
+
+    <section class="card report-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>Maandoverzicht</h2>
+
+                <p class="card-description">
+                    Bekijk de kosten van een volledige maand.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-controls">
+
+            <div class="form-group">
+
+                <label for="monthDate">
+                    Kies maand
+                </label>
+
+                <input
+                    type="month"
+                    id="monthDate"
+                >
+
+            </div>
+
+
+            <div class="button-group">
+
+                <button
+                    id="loadMonthButton"
+                    type="button"
+                >
+                    Maandoverzicht tonen
+                </button>
+
+                <button
+                    id="printMonthButton"
+                    type="button"
+                    class="secondary-button"
+                >
+                    🖨️ Maandoverzicht printen
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KOSTEN PER DAG -->
+
+        <div class="report-section">
+
+            <h3>
+                Kosten per dag
+            </h3>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Datum
+                            </th>
+
+                            <th>
+                                Kosten
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="monthDayTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KOSTEN PER WERF -->
+
+        <div class="report-section">
+
+            <h3>
+                Kosten per werf
+            </h3>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Werf
+                            </th>
+
+                            <th>
+                                Kosten
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="monthSiteTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KOSTEN PER CATEGORIE -->
+
+        <div class="report-section">
+
+            <h3>
+                Kosten per categorie
+            </h3>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Categorie
+                            </th>
+
+                            <th>
+                                Kosten
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="monthCategoryTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="total-box">
+
+            <span>
+                Maandtotaal
+            </span>
+
+            <strong id="monthTotal">
+                €0,00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/rapporten.js"></script>
+
+
+</body>
+
+</html>

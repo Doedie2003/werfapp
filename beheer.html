@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>WerfApp - Beheer</title>
+
+<link rel="stylesheet" href="css/style.css">
+```
+
+</head>
+
+<body>
+
+<header>
+
+```
+<h1>🏗️ WerfApp</h1>
+
+<p>Beheer</p>
+```
+
+</header>
+
+<nav>
+
+```
+<a href="dashboard.html">
+    Dashboard
+</a>
+
+<a href="registratie.html">
+    Registratie
+</a>
+
+<a href="rapporten.html">
+    Rapporten
+</a>
+
+<a href="beheer.html">
+    Beheer
+</a>
+
+<a href="#"
+   id="logoutButton">
+    Uitloggen
+</a>
+```
+
+</nav>
+
+<div class="container">
+
+```
+<!-- ========================= -->
+<!-- WERVEN -->
+<!-- ========================= -->
+
+<div class="card">
+
+    <h2>Werven</h2>
+
+    <label for="siteName">
+        Naam werf
+    </label>
+
+    <input
+        type="text"
+        id="siteName"
+        placeholder="Naam van de werf"
+    >
+
+    <button id="addSiteButton">
+        Werf toevoegen
+    </button>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Werf
+                </th>
+
+                <th>
+                    Actie
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="siteTable">
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- CATEGORIEËN -->
+<!-- ========================= -->
+
+<div class="card">
+
+    <h2>Categorieën</h2>
+
+    <label for="categoryName">
+        Naam categorie
+    </label>
+
+    <input
+        type="text"
+        id="categoryName"
+        placeholder="Naam van de categorie"
+    >
+
+    <button id="addCategoryButton">
+        Categorie toevoegen
+    </button>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Categorie
+                </th>
+
+                <th>
+                    Actie
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="categoryTable">
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- TARIEVEN -->
+<!-- ========================= -->
+
+<div class="card">
+
+    <h2>Tarieven</h2>
+
+    <label for="rateCategory">
+        Categorie
+    </label>
+
+    <select id="rateCategory">
+
+        <option value="">
+            Kies categorie
+        </option>
+
+    </select>
+
+
+    <label for="hourlyRate">
+        Uurtarief
+    </label>
+
+    <input
+        type="number"
+        id="hourlyRate"
+        min="0"
+        step="0.01"
+        placeholder="35.00"
+    >
+
+
+    <label for="validFrom">
+        Geldig vanaf
+    </label>
+
+    <input
+        type="date"
+        id="validFrom"
+    >
+
+
+    <button id="addRateButton">
+        Tarief toevoegen
+    </button>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Categorie
+                </th>
+
+                <th>
+                    Uurtarief
+                </th>
+
+                <th>
+                    Geldig vanaf
+                </th>
+
+                <th>
+                    Actie
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="rateTable">
+        </tbody>
+
+    </table>
+
+</div>
+```
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/beheer.js"></script>
+
+</body>
+
+</html>
