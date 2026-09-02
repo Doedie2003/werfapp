@@ -1,9 +1,7 @@
-```html
 <!DOCTYPE html>
 <html lang="nl">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -17,17 +15,13 @@
         rel="stylesheet"
         href="css/style.css"
     >
-
 </head>
 
 <body>
 
 <header>
-
     <h1>🏗️ WerfApp</h1>
-
     <p>Materiaalregistratie</p>
-
 </header>
 
 
@@ -36,9 +30,14 @@
     <a href="dashboard.html">
         Dashboard
     </a>
-    <a href="registratie.html">Registratie</a>
 
-   <a href="materialen.html">Materialen</a>
+    <a href="registratie.html">
+        Registratie
+    </a>
+
+    <a href="materialen.html" class="active">
+        Materialen
+    </a>
 
     <a href="rapporten.html">
         Rapporten
@@ -48,10 +47,7 @@
         Beheer
     </a>
 
-    <a
-        href="#"
-        id="logoutButton"
-    >
+    <a href="#" id="logoutButton">
         Uitloggen
     </a>
 
@@ -59,7 +55,6 @@
 
 
 <main class="container materialen-page">
-
 
     <section class="page-intro">
 
@@ -74,9 +69,7 @@
 
     <div class="card">
 
-        <h2>
-            Nieuwe materiaalregistratie
-        </h2>
+        <h2>Nieuwe materiaalregistratie</h2>
 
 
         <div class="form-group">
@@ -102,7 +95,7 @@
             <select id="materialSite">
 
                 <option value="">
-                    Werf kiezen...
+                    Werven laden...
                 </option>
 
             </select>
@@ -166,7 +159,6 @@ Bijvoorbeeld:
             class="message"
         ></p>
 
-
     </div>
 
 
@@ -196,33 +188,22 @@ Bijvoorbeeld:
                 <thead>
 
                     <tr>
-
                         <th>Datum</th>
-
                         <th>Werf</th>
-
                         <th>Materialen</th>
-
                         <th>Totaal</th>
-
                         <th>Actie</th>
-
                     </tr>
 
                 </thead>
 
-
-                <tbody id="materialTable">
-
-                </tbody>
+                <tbody id="materialTable"></tbody>
 
             </table>
 
         </div>
 
-
     </div>
-
 
 </main>
 
