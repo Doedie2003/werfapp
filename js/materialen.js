@@ -9,16 +9,12 @@ let materialSites = [];
 // START
 // ==========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    startMaterialen
-);
+document.addEventListener("DOMContentLoaded", startMaterialen);
 
 
 async function startMaterialen() {
 
-    const ingelogd =
-        await checkMaterialenLogin();
+    const ingelogd = await checkMaterialenLogin();
 
     if (!ingelogd) {
         return;
@@ -30,20 +26,20 @@ async function startMaterialen() {
 
     await loadMaterials();
 
-    const saveButton =
-        document.getElementById(
-            "saveMaterialButton"
-        );
+    const saveButton = document.getElementById("saveMaterialButton");
 
     if (saveButton) {
-
-        saveButton.addEventListener(
-            "click",
-            saveMaterial
-        );
-
+        saveButton.addEventListener("click", saveMaterial);
     }
 
+    const materialTable = document.getElementById("materialTable");
+
+    if (materialTable) {
+        materialTable.addEventListener(
+            "click",
+            handleMaterialTableClick
+        );
+    }
 }
 
 
@@ -61,8 +57,7 @@ async function checkMaterialenLogin() {
         !resultaat.data.session
     ) {
 
-        window.location.href =
-            "index.html";
+        window.location.href = "index.html";
 
         return false;
     }
@@ -75,35 +70,29 @@ async function checkMaterialenLogin() {
 // UITLOGGEN
 // ==========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+document.addEventListener("DOMContentLoaded", function() {
 
-        const logoutButton =
-            document.getElementById(
-                "logoutButton"
-            );
+    const logoutButton =
+        document.getElementById("logoutButton");
 
-        if (!logoutButton) {
-            return;
-        }
-
-        logoutButton.addEventListener(
-            "click",
-            async function(event) {
-
-                event.preventDefault();
-
-                await supabaseClient.auth.signOut();
-
-                window.location.href =
-                    "index.html";
-
-            }
-        );
-
+    if (!logoutButton) {
+        return;
     }
-);
+
+    logoutButton.addEventListener(
+        "click",
+        async function(event) {
+
+            event.preventDefault();
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href = "index.html";
+
+        }
+    );
+
+});
 
 
 // ==========================================
@@ -112,44 +101,28 @@ document.addEventListener(
 
 function formatDate(date) {
 
-    const jaar =
-        date.getFullYear();
+    const jaar = date.getFullYear();
 
     const maand =
-        String(
-            date.getMonth() + 1
-        ).padStart(2, "0");
+        String(date.getMonth() + 1).padStart(2, "0");
 
     const dag =
-        String(
-            date.getDate()
-        ).padStart(2, "0");
+        String(date.getDate()).padStart(2, "0");
 
-    return (
-        jaar +
-        "-" +
-        maand +
-        "-" +
-        dag
-    );
+    return jaar + "-" + maand + "-" + dag;
 }
 
 
 function setDefaultDate() {
 
     const veld =
-        document.getElementById(
-            "materialDate"
-        );
+        document.getElementById("materialDate");
 
     if (!veld) {
         return;
     }
 
-    veld.value =
-        formatDate(
-            new Date()
-        );
+    veld.value = formatDate(new Date());
 }
 
 
@@ -165,9 +138,8 @@ function euro(bedrag) {
             style: "currency",
             currency: "EUR"
         }
-    ).format(
-        Number(bedrag) || 0
-    );
+    ).format(Number(bedrag) || 0);
+
 }
 
 
@@ -175,22 +147,16 @@ function euro(bedrag) {
 // MELDING
 // ==========================================
 
-function showMessage(
-    tekst,
-    type
-) {
+function showMessage(tekst, type) {
 
     const message =
-        document.getElementById(
-            "materialMessage"
-        );
+        document.getElementById("materialMessage");
 
     if (!message) {
         return;
     }
 
-    message.textContent =
-        tekst;
+    message.textContent = tekst;
 
     message.className =
         "message " + type;
@@ -205,9 +171,7 @@ function showMessage(
 async function loadSites() {
 
     const select =
-        document.getElementById(
-            "materialSite"
-        );
+        document.getElementById("materialSite");
 
     if (!select) {
         return;
@@ -218,26 +182,20 @@ async function loadSites() {
         '<option value="">Werven laden...</option>';
 
 
+    console.log("Materialen: werven worden geladen...");
+
+
     const resultaat =
         await supabaseClient
             .from("sites")
-            .select(
-                "id, name, active"
-            )
-            .eq(
-                "active",
-                true
-            )
-            .order(
-                "name",
-                {
-                    ascending: true
-                }
-            );
+            .select("id, name, active")
+            .order("name", {
+                ascending: true
+            });
 
 
     console.log(
-        "Resultaat werven:",
+        "Materialen - resultaat sites:",
         resultaat
     );
 
@@ -245,15 +203,16 @@ async function loadSites() {
     if (resultaat.error) {
 
         console.error(
-            "Fout bij laden werven:",
+            "Materialen - fout bij sites:",
             resultaat.error
         );
 
         select.innerHTML =
-            '<option value="">Fout bij laden van werven</option>';
+            '<option value="">Fout bij laden werven</option>';
 
         showMessage(
-            "Werven konden niet geladen worden.",
+            "Werven konden niet geladen worden: " +
+            resultaat.error.message,
             "error"
         );
 
@@ -265,52 +224,50 @@ async function loadSites() {
         resultaat.data || [];
 
 
+    console.log(
+        "Materialen - aantal werven:",
+        materialSites.length
+    );
+
+
     select.innerHTML =
         '<option value="">Werf kiezen...</option>';
 
 
-    materialSites.forEach(
-        function(site) {
+    materialSites.forEach(function(site) {
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        const option =
+            document.createElement("option");
 
+        option.value =
+            String(site.id);
 
-            option.value =
-                String(site.id);
+        option.textContent =
+            site.name;
 
+        select.appendChild(option);
 
-            option.textContent =
-                site.name +
-                " (ID " +
-                site.id +
-                ")";
+    });
 
 
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    if (
-        materialSites.length === 0
-    ) {
+    if (materialSites.length === 0) {
 
         select.innerHTML =
-            '<option value="">Geen actieve werven gevonden</option>';
+            '<option value="">Geen werven gevonden</option>';
 
         showMessage(
-            "Er zijn geen actieve werven gevonden.",
+            "Er zijn geen werven gevonden.",
             "error"
         );
 
         return;
     }
+
+
+    console.log(
+        "Materialen - werven succesvol geladen:",
+        materialSites
+    );
 
 }
 
@@ -322,14 +279,12 @@ async function loadSites() {
 function getSiteName(siteId) {
 
     const site =
-        materialSites.find(
-            function(item) {
+        materialSites.find(function(item) {
 
-                return String(item.id) ===
-                    String(siteId);
+            return String(item.id) ===
+                String(siteId);
 
-            }
-        );
+        });
 
 
     if (site) {
@@ -348,28 +303,19 @@ function getSiteName(siteId) {
 async function saveMaterial() {
 
     const date =
-        document.getElementById(
-            "materialDate"
-        ).value;
-
+        document.getElementById("materialDate").value;
 
     const siteId =
-        document.getElementById(
-            "materialSite"
-        ).value;
-
+        document.getElementById("materialSite").value;
 
     const description =
-        document.getElementById(
-            "materialDescription"
-        ).value.trim();
-
+        document.getElementById("materialDescription")
+            .value
+            .trim();
 
     const price =
         Number(
-            document.getElementById(
-                "materialPrice"
-            ).value
+            document.getElementById("materialPrice").value
         );
 
 
@@ -446,11 +392,9 @@ async function saveMaterial() {
         );
 
 
-    button.disabled =
-        true;
+    button.disabled = true;
 
-    button.textContent =
-        "Opslaan...";
+    button.textContent = "Opslaan...";
 
 
     const resultaat =
@@ -459,18 +403,10 @@ async function saveMaterial() {
             .insert([
                 {
                     work_date: date,
-
-                    site_id:
-                        Number(siteId),
-
-                    description:
-                        description,
-
-                    total_price:
-                        price,
-
-                    user_id:
-                        userId
+                    site_id: Number(siteId),
+                    description: description,
+                    total_price: price,
+                    user_id: userId
                 }
             ]);
 
@@ -494,8 +430,7 @@ async function saveMaterial() {
             "error"
         );
 
-        button.disabled =
-            false;
+        button.disabled = false;
 
         button.textContent =
             "Materialen opslaan";
@@ -525,14 +460,14 @@ async function saveMaterial() {
     ).value = "";
 
 
-    button.disabled =
-        false;
+    button.disabled = false;
 
     button.textContent =
         "Materialen opslaan";
 
 
     await loadMaterials();
+
 }
 
 
@@ -546,18 +481,12 @@ async function loadMaterials() {
         await supabaseClient
             .from("material_entries")
             .select("*")
-            .order(
-                "work_date",
-                {
-                    ascending: false
-                }
-            )
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
+            .order("work_date", {
+                ascending: false
+            })
+            .order("created_at", {
+                ascending: false
+            });
 
 
     if (resultaat.error) {
@@ -568,7 +497,8 @@ async function loadMaterials() {
         );
 
         showMessage(
-            "Materiaalregistraties konden niet geladen worden.",
+            "Materiaalregistraties konden niet geladen worden: " +
+            resultaat.error.message,
             "error"
         );
 
@@ -581,9 +511,7 @@ async function loadMaterials() {
 
 
     const table =
-        document.getElementById(
-            "materialTable"
-        );
+        document.getElementById("materialTable");
 
 
     if (!table) {
@@ -591,13 +519,10 @@ async function loadMaterials() {
     }
 
 
-    table.innerHTML =
-        "";
+    table.innerHTML = "";
 
 
-    if (
-        materials.length === 0
-    ) {
+    if (materials.length === 0) {
 
         table.innerHTML = `
             <tr>
@@ -611,116 +536,88 @@ async function loadMaterials() {
     }
 
 
-    materials.forEach(
-        function(material) {
+    materials.forEach(function(material) {
 
-            const row =
-                document.createElement(
-                    "tr"
-                );
+        const row =
+            document.createElement("tr");
 
 
-            const dateCell =
-                document.createElement(
-                    "td"
-                );
+        const dateCell =
+            document.createElement("td");
 
-            dateCell.textContent =
-                formatDisplayDate(
-                    material.work_date
-                );
-
-
-            const siteCell =
-                document.createElement(
-                    "td"
-                );
-
-            siteCell.textContent =
-                getSiteName(
-                    material.site_id
-                );
-
-
-            const descriptionCell =
-                document.createElement(
-                    "td"
-                );
-
-            descriptionCell.className =
-                "material-description";
-
-            descriptionCell.textContent =
-                material.description;
-
-
-            const priceCell =
-                document.createElement(
-                    "td"
-                );
-
-            priceCell.textContent =
-                euro(
-                    material.total_price
-                );
-
-
-            const actionCell =
-                document.createElement(
-                    "td"
-                );
-
-
-            const deleteButton =
-                document.createElement(
-                    "button"
-                );
-
-            deleteButton.type =
-                "button";
-
-            deleteButton.className =
-                "danger-button small-button";
-
-            deleteButton.dataset.id =
-                material.id;
-
-            deleteButton.textContent =
-                "Verwijderen";
-
-
-            actionCell.appendChild(
-                deleteButton
+        dateCell.textContent =
+            formatDisplayDate(
+                material.work_date
             );
 
 
-            row.appendChild(
-                dateCell
-            );
+        const siteCell =
+            document.createElement("td");
 
-            row.appendChild(
-                siteCell
-            );
-
-            row.appendChild(
-                descriptionCell
-            );
-
-            row.appendChild(
-                priceCell
-            );
-
-            row.appendChild(
-                actionCell
+        siteCell.textContent =
+            getSiteName(
+                material.site_id
             );
 
 
-            table.appendChild(
-                row
+        const descriptionCell =
+            document.createElement("td");
+
+        descriptionCell.className =
+            "material-description";
+
+        descriptionCell.textContent =
+            material.description;
+
+
+        const priceCell =
+            document.createElement("td");
+
+        priceCell.textContent =
+            euro(
+                material.total_price
             );
 
-        }
-    );
+
+        const actionCell =
+            document.createElement("td");
+
+
+        const deleteButton =
+            document.createElement("button");
+
+        deleteButton.type = "button";
+
+        deleteButton.className =
+            "danger-button small-button";
+
+        deleteButton.dataset.id =
+            material.id;
+
+        deleteButton.textContent =
+            "Verwijderen";
+
+
+        actionCell.appendChild(
+            deleteButton
+        );
+
+
+        row.appendChild(dateCell);
+
+        row.appendChild(siteCell);
+
+        row.appendChild(descriptionCell);
+
+        row.appendChild(priceCell);
+
+        row.appendChild(actionCell);
+
+
+        table.appendChild(row);
+
+    });
+
 }
 
 
@@ -728,9 +625,7 @@ async function loadMaterials() {
 // DATUM WEERGAVE
 // ==========================================
 
-function formatDisplayDate(
-    dateString
-) {
+function formatDisplayDate(dateString) {
 
     if (!dateString) {
         return "";
@@ -753,6 +648,7 @@ function formatDisplayDate(
         "/" +
         parts[0]
     );
+
 }
 
 
@@ -760,9 +656,7 @@ function formatDisplayDate(
 // VERWIJDEREN
 // ==========================================
 
-async function handleMaterialTableClick(
-    event
-) {
+async function handleMaterialTableClick(event) {
 
     const button =
         event.target.closest(
@@ -790,18 +684,14 @@ async function handleMaterialTableClick(
     }
 
 
-    button.disabled =
-        true;
+    button.disabled = true;
 
 
     const resultaat =
         await supabaseClient
             .from("material_entries")
             .delete()
-            .eq(
-                "id",
-                id
-            );
+            .eq("id", id);
 
 
     if (resultaat.error) {
@@ -815,13 +705,12 @@ async function handleMaterialTableClick(
             "De materiaalregistratie kon niet worden verwijderd."
         );
 
-        button.disabled =
-            false;
+        button.disabled = false;
 
         return;
     }
 
 
     await loadMaterials();
+
 }
-```
