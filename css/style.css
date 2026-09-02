@@ -383,9 +383,20 @@ tbody tr:last-child td {
    ========================================================= */
 
 .message {
-    min-height: 24px;
-    margin: 14px 0 0;
-    font-weight: 600;
+    .message.success {
+    padding: 12px 14px;
+    border-radius: 9px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+}
+
+.message.error {
+    padding: 12px 14px;
+    border-radius: 9px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
 }
 
 /* =========================================================
