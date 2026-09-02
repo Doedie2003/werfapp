@@ -3,6 +3,11 @@
    Desktop + Tablet + Mobiel
    ========================================================= */
 
+
+/* =========================================================
+   BASIS
+   ========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -28,7 +33,7 @@ body {
 
 header {
     background: linear-gradient(135deg, #1f2937, #374151);
-    color: white;
+    color: #ffffff;
     text-align: center;
     padding: 28px 20px;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
@@ -139,7 +144,10 @@ nav a.active:hover {
 
 .grid {
     display: grid;
+
+    /* PC: 4 naast elkaar */
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
     gap: 18px;
     margin-bottom: 24px;
 }
@@ -148,39 +156,65 @@ nav a.active:hover {
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
+
     padding: 22px;
+
     min-height: 135px;
     min-width: 0;
+
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
     overflow: hidden;
 }
 
 .stat:hover {
     transform: translateY(-2px);
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.09);
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.09);
 }
 
 .stat h3 {
     margin: 0 0 12px;
+
     color: #6b7280;
+
     font-size: 14px;
     font-weight: 600;
+
     text-transform: uppercase;
     letter-spacing: 0.4px;
+
     line-height: 1.25;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 .stat p {
     margin: 0;
+
     color: #111827;
+
     font-size: clamp(18px, 2.2vw, 28px);
+
     font-weight: 700;
+
     line-height: 1.15;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    word-break: normal;
+    overflow-wrap: normal;
+
     font-variant-numeric: tabular-nums;
 }
 
@@ -191,9 +225,13 @@ nav a.active:hover {
 
 label {
     display: block;
+
     margin: 16px 0 7px;
+
     color: #374151;
+
     font-weight: 600;
+
     font-size: 14px;
 }
 
@@ -201,15 +239,26 @@ input,
 select,
 textarea {
     width: 100%;
+
     border: 1px solid #d1d5db;
+
     border-radius: 9px;
+
     background: #ffffff;
+
     color: #111827;
+
     font-family: inherit;
+
     font-size: 16px;
+
     padding: 11px 13px;
+
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 input,
@@ -219,6 +268,7 @@ select {
 
 textarea {
     min-height: 110px;
+
     resize: vertical;
 }
 
@@ -226,7 +276,9 @@ input:focus,
 select:focus,
 textarea:focus {
     border-color: #6b7280;
-    box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.14);
+
+    box-shadow:
+        0 0 0 3px rgba(107, 114, 128, 0.14);
 }
 
 input::placeholder,
@@ -241,22 +293,35 @@ textarea::placeholder {
 
 button {
     appearance: none;
+
     border: 0;
+
     border-radius: 9px;
+
     background: #1f2937;
+
     color: #ffffff;
+
     min-height: 44px;
+
     padding: 10px 18px;
+
     margin-top: 18px;
+
     font-family: inherit;
+
     font-size: 15px;
+
     font-weight: 600;
+
     cursor: pointer;
+
     transition: 0.2s ease;
 }
 
 button:hover {
     background: #111827;
+
     transform: translateY(-1px);
 }
 
@@ -266,7 +331,9 @@ button:active {
 
 button:disabled {
     opacity: 0.6;
+
     cursor: not-allowed;
+
     transform: none;
 }
 
@@ -281,7 +348,9 @@ button:disabled {
 
 .card button[onclick] {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 }
 
@@ -292,17 +361,25 @@ button:disabled {
 
 .card .card {
     margin-top: 22px;
+
     margin-bottom: 0;
+
     background: #f8fafc;
+
     border: 1px solid #e5e7eb;
+
     box-shadow: none;
 }
 
 .card .card p {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 20px;
+
     margin: 10px 0;
 }
 
@@ -317,8 +394,11 @@ button:disabled {
 
 table {
     width: 100%;
+
     border-collapse: collapse;
+
     margin-top: 12px;
+
     background: #ffffff;
 }
 
@@ -328,18 +408,27 @@ thead {
 
 th {
     color: #374151;
+
     font-size: 13px;
+
     font-weight: 700;
+
     text-align: left;
+
     padding: 13px 12px;
+
     border-bottom: 2px solid #e5e7eb;
+
     white-space: nowrap;
 }
 
 td {
     color: #4b5563;
+
     padding: 12px;
+
     border-bottom: 1px solid #e5e7eb;
+
     vertical-align: middle;
 }
 
@@ -351,9 +440,10 @@ tbody tr:last-child td {
     border-bottom: 0;
 }
 
-.card {
-    overflow-x: auto;
-}
+
+/* =========================================================
+   CARD INHOUD
+   ========================================================= */
 
 .card h2,
 .card h3,
@@ -376,13 +466,21 @@ tbody tr:last-child td {
 .total,
 .total-box {
     margin-top: 18px;
+
     padding: 16px 18px;
+
     border-radius: 10px;
+
     background: #f3f4f6;
+
     border: 1px solid #e5e7eb;
+
     color: #111827;
+
     font-size: 20px;
+
     font-weight: 700;
+
     text-align: right;
 }
 
@@ -391,6 +489,7 @@ tbody tr:last-child td {
 #weekTotal,
 #monthTotal {
     font-size: 20px;
+
     font-weight: 700;
 }
 
@@ -405,17 +504,25 @@ tbody tr:last-child td {
 
 .message.success {
     padding: 12px 14px;
+
     border-radius: 9px;
+
     background: #ecfdf5;
+
     border: 1px solid #a7f3d0;
+
     color: #065f46;
 }
 
 .message.error {
     padding: 12px 14px;
+
     border-radius: 9px;
+
     background: #fef2f2;
+
     border: 1px solid #fecaca;
+
     color: #991b1b;
 }
 
@@ -434,6 +541,7 @@ tbody tr:last-child td {
 
 .main-nav .active {
     background: #1f2937;
+
     color: #ffffff;
 }
 
@@ -455,7 +563,10 @@ tbody tr:last-child td {
 
 .filter-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 18px;
 }
 
@@ -465,8 +576,11 @@ tbody tr:last-child td {
 
 .filter-actions {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 10px;
+
     margin-top: 20px;
 }
 
@@ -484,25 +598,33 @@ tbody tr:last-child td {
 
 .card-description {
     margin: 0 0 16px;
+
     color: #6b7280;
 }
 
 .report-controls {
     display: flex;
+
     align-items: end;
+
     flex-wrap: wrap;
+
     gap: 12px;
+
     margin-bottom: 18px;
 }
 
 .report-controls .form-group {
     min-width: 220px;
+
     flex: 1;
 }
 
 .button-group {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 8px;
 }
 
@@ -512,7 +634,9 @@ tbody tr:last-child td {
 
 .secondary-button {
     background: #ffffff;
+
     color: #374151;
+
     border: 1px solid #d1d5db;
 }
 
@@ -522,14 +646,19 @@ tbody tr:last-child td {
 
 .table-wrapper {
     width: 100%;
+
     overflow-x: auto;
+
     -webkit-overflow-scrolling: touch;
+
     border: 1px solid #e5e7eb;
+
     border-radius: 10px;
 }
 
 .table-wrapper table {
     min-width: 650px;
+
     margin-top: 0;
 }
 
@@ -561,6 +690,7 @@ tbody tr:last-child td {
 
 body:has(#loginButton) .container {
     max-width: 500px;
+
     margin-top: 60px;
 }
 
@@ -582,6 +712,7 @@ body:has(#loginButton) header h1 {
 
 .login-description {
     margin: -10px 0 20px;
+
     color: #6b7280;
 }
 
@@ -596,12 +727,15 @@ body:has(#loginButton) header h1 {
 
 .dashboard-page .page-intro h2 {
     margin: 0;
+
     font-size: 26px;
+
     color: #111827;
 }
 
 .dashboard-page .page-intro p {
     margin: 5px 0 0;
+
     color: #6b7280;
 }
 
@@ -612,6 +746,7 @@ body:has(#loginButton) header h1 {
 
 button.primary-button {
     background: #1f2937;
+
     color: #ffffff;
 }
 
@@ -621,7 +756,9 @@ button.primary-button:hover {
 
 button.secondary-button {
     background: #ffffff;
+
     color: #374151;
+
     border: 1px solid #d1d5db;
 }
 
@@ -631,6 +768,7 @@ button.secondary-button:hover {
 
 button.danger-button {
     background: #b91c1c;
+
     color: #ffffff;
 }
 
@@ -646,11 +784,19 @@ button.danger-button:hover {
 @media (max-width: 900px) {
 
     .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        /*
+         * Tablet:
+         * 2 vakken naast elkaar
+         */
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
     }
 
     .container {
         width: min(100% - 24px, 760px);
+
         margin: 24px auto;
     }
 
@@ -674,6 +820,9 @@ button.danger-button:hover {
         font-size: 15px;
     }
 
+
+    /* HEADER */
+
     header {
         padding: 22px 15px;
     }
@@ -686,17 +835,27 @@ button.danger-button:hover {
         font-size: 14px;
     }
 
+
+    /* NAVIGATIE */
+
     nav {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
         gap: 6px;
+
         padding: 8px;
     }
 
     nav a {
         width: 100%;
+
         min-height: 44px;
+
         padding: 8px 5px;
+
         font-size: 13px;
     }
 
@@ -706,41 +865,102 @@ button.danger-button:hover {
 
     nav a.active {
         background: #1f2937;
+
         color: #ffffff;
     }
 
+
+    /* CONTAINER */
+
     .container {
         width: calc(100% - 20px);
+
         margin: 16px auto;
     }
 
+
+    /* =====================================================
+       DASHBOARD
+       ===================================================== */
+
     .grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+
+        /*
+         * MOBIEL:
+         * alle vakken onder elkaar
+         */
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-bottom: 18px;
     }
 
+
     .stat {
-        min-height: 110px;
-        padding: 15px 8px;
+
+        width: 100%;
+
+        min-height: 105px;
+
+        padding: 18px;
+
         border-radius: 12px;
+
         min-width: 0;
+
         overflow: hidden;
     }
 
+
     .stat h3 {
-        font-size: 10px;
-        line-height: 1.2;
+
         margin: 0 0 8px;
-        overflow-wrap: anywhere;
-        word-break: break-word;
+
+        font-size: 13px;
+
+        line-height: 1.3;
+
+        color: #6b7280;
+
+        text-transform: uppercase;
+
+        white-space: normal;
+
+        overflow-wrap: normal;
+
+        word-break: normal;
     }
 
+
     .stat p {
-        font-size: clamp(16px, 5vw, 21px);
-        line-height: 1.15;
-        overflow-wrap: anywhere;
-        word-break: break-word;
+
+        margin: 0;
+
+        font-size: 24px;
+
+        line-height: 1.2;
+
+        font-weight: 700;
+
+        color: #111827;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        word-break: normal;
+
+        overflow-wrap: normal;
+
+        font-variant-numeric: tabular-nums;
     }
+
+
+    /* DASHBOARD INTRO */
 
     .dashboard-page .page-intro {
         margin-bottom: 18px;
@@ -754,14 +974,22 @@ button.danger-button:hover {
         font-size: 14px;
     }
 
+
+    /* KAARTEN */
+
     .card {
         padding: 18px 14px;
+
         margin-bottom: 16px;
+
         border-radius: 12px;
+
+        overflow-x: auto;
     }
 
     .card h2 {
         font-size: 19px;
+
         margin-bottom: 16px;
     }
 
@@ -769,15 +997,23 @@ button.danger-button:hover {
         font-size: 17px;
     }
 
+
+    /* FORMULIEREN */
+
     input,
     select,
     textarea {
         font-size: 16px;
     }
 
+
+    /* KNOPPEN */
+
     button {
         width: 100%;
+
         min-height: 46px;
+
         margin-top: 12px;
     }
 
@@ -789,11 +1025,19 @@ button.danger-button:hover {
         width: 100%;
     }
 
+
+    /* BEREKENING */
+
     .card .card p {
         align-items: flex-start;
+
         flex-direction: column;
+
         gap: 3px;
     }
+
+
+    /* TABELLEN */
 
     table {
         font-size: 13px;
@@ -804,10 +1048,16 @@ button.danger-button:hover {
         padding: 10px 8px;
     }
 
+
+    /* TOTALEN */
+
     .total,
     .total-box {
         font-size: 18px;
     }
+
+
+    /* RAPPORTEN */
 
     .filter-grid {
         gap: 6px;
@@ -816,6 +1066,7 @@ button.danger-button:hover {
     .filter-actions,
     .button-group {
         display: flex;
+
         flex-direction: column;
     }
 
@@ -832,6 +1083,9 @@ button.danger-button:hover {
         min-width: 0;
     }
 
+
+    /* LOGIN */
+
     body:has(#loginButton) .container {
         margin-top: 25px;
     }
@@ -843,6 +1097,9 @@ button.danger-button:hover {
     body:has(#loginButton) header h1 {
         font-size: 29px;
     }
+
+
+    /* ALGEMENE PAGE INTRO */
 
     .page-intro {
         margin-bottom: 18px;
@@ -866,19 +1123,22 @@ button.danger-button:hover {
 
     .grid {
         grid-template-columns: 1fr;
+
+        gap: 10px;
     }
 
     .stat {
-        min-height: 95px;
-        padding: 14px 12px;
+        min-height: 100px;
+
+        padding: 16px;
     }
 
     .stat h3 {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .stat p {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     nav {
@@ -911,18 +1171,22 @@ button.danger-button:hover {
 
     .container {
         width: 100%;
+
         max-width: none;
+
         margin: 0;
     }
 
     .card,
     .stat {
         box-shadow: none;
+
         border: 1px solid #ddd;
     }
 
     .table-wrapper {
         overflow: visible;
+
         border: 0;
     }
 
