@@ -1194,3 +1194,74 @@ button.danger-button:hover {
         min-width: 0 !important;
     }
 }
+```css
+/* ==========================================
+   MATERIALEN
+   ========================================== */
+
+.materialen-page {
+    max-width: 1200px;
+}
+
+.materialen-page .page-intro {
+    margin-bottom: 24px;
+}
+
+.field-help {
+    margin: 6px 0 0;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.material-description {
+    white-space: pre-line;
+    min-width: 240px;
+    max-width: 450px;
+}
+
+.small-button {
+    width: auto;
+    min-width: 110px;
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 13px;
+}
+
+.materialen-page textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+@media (max-width: 600px) {
+
+    .materialen-page .card {
+        padding: 18px;
+    }
+
+    .materialen-page textarea {
+        min-height: 140px;
+    }
+
+    .material-description {
+        min-width: 180px;
+        max-width: none;
+    }
+
+    .materialen-page table {
+        font-size: 13px;
+    }
+
+    .materialen-page th,
+    .materialen-page td {
+        padding: 9px 8px;
+    }
+
+    .small-button {
+        min-width: 0;
+        width: auto;
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+}
+```
