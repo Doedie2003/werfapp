@@ -850,3 +850,26 @@ button.danger-button:hover {
     margin: -10px 0 20px;
     color: #6b7280;
 }
+
+   @media (max-width: 600px) {
+
+    .page-intro {
+        margin-bottom: 18px;
+    }
+
+    .page-intro h2 {
+        font-size: 23px;
+    }
+
+    .page-intro p {
+        font-size: 14px;
+    }
+
+    .dashboard-page .page-intro h2 {
+        font-size: 23px;
+    }
+
+    .dashboard-page .page-intro p {
+        font-size: 14px;
+    }
+}
