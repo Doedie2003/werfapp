@@ -21,6 +21,7 @@ body {
     line-height: 1.5;
 }
 
+
 /* =========================================================
    HEADER
    ========================================================= */
@@ -45,6 +46,7 @@ header p {
     color: #d1d5db;
     font-size: 15px;
 }
+
 
 /* =========================================================
    NAVIGATIE
@@ -83,6 +85,7 @@ nav a:hover {
     background: #f3f4f6;
     color: #111827;
 }
+
 nav a.active {
     background: #1f2937;
     color: #ffffff;
@@ -92,10 +95,7 @@ nav a.active:hover {
     background: #111827;
     color: #ffffff;
 }
-nav a.active {
-    background: #1f2937;
-    color: #ffffff;
-}
+
 
 /* =========================================================
    CONTAINER
@@ -105,6 +105,7 @@ nav a.active {
     width: min(1200px, calc(100% - 32px));
     margin: 30px auto;
 }
+
 
 /* =========================================================
    KAARTEN
@@ -131,6 +132,7 @@ nav a.active {
     font-size: 18px;
 }
 
+
 /* =========================================================
    DASHBOARD STATISTIEKEN
    ========================================================= */
@@ -148,8 +150,10 @@ nav a.active {
     border-radius: 14px;
     padding: 22px;
     min-height: 135px;
+    min-width: 0;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
 }
 
 .stat:hover {
@@ -164,6 +168,9 @@ nav a.active {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.4px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .stat p {
@@ -173,7 +180,10 @@ nav a.active {
     font-weight: 700;
     line-height: 1.15;
     overflow-wrap: anywhere;
+    word-break: break-word;
+    font-variant-numeric: tabular-nums;
 }
+
 
 /* =========================================================
    FORMULIEREN
@@ -224,6 +234,7 @@ textarea::placeholder {
     color: #9ca3af;
 }
 
+
 /* =========================================================
    KNOPPEN
    ========================================================= */
@@ -259,13 +270,13 @@ button:disabled {
     transform: none;
 }
 
-/* Knoppen in kaarten */
 .card > button {
     margin-right: 8px;
 }
 
+
 /* =========================================================
-   SNELLE ACTIES DASHBOARD
+   SNELLE ACTIES
    ========================================================= */
 
 .card button[onclick] {
@@ -273,6 +284,7 @@ button:disabled {
     align-items: center;
     justify-content: center;
 }
+
 
 /* =========================================================
    BEREKENING REGISTRATIE
@@ -297,6 +309,7 @@ button:disabled {
 .card .card strong {
     font-size: 18px;
 }
+
 
 /* =========================================================
    TABELLEN
@@ -338,7 +351,6 @@ tbody tr:last-child td {
     border-bottom: 0;
 }
 
-/* Tabellen horizontaal scrollbaar op mobiel */
 .card {
     overflow-x: auto;
 }
@@ -355,6 +367,7 @@ tbody tr:last-child td {
 .card .total {
     max-width: 100%;
 }
+
 
 /* =========================================================
    TOTALEN
@@ -381,12 +394,16 @@ tbody tr:last-child td {
     font-weight: 700;
 }
 
+
 /* =========================================================
    MELDINGEN
    ========================================================= */
 
 .message {
-    .message.success {
+    margin-top: 12px;
+}
+
+.message.success {
     padding: 12px 14px;
     border-radius: 9px;
     background: #ecfdf5;
@@ -402,8 +419,9 @@ tbody tr:last-child td {
     color: #991b1b;
 }
 
+
 /* =========================================================
-   RAPPORTEN - BESTAANDE KLASSEN
+   RAPPORTEN
    ========================================================= */
 
 .app-header {
@@ -519,6 +537,7 @@ tbody tr:last-child td {
     margin-bottom: 24px;
 }
 
+
 /* =========================================================
    BEHEER
    ========================================================= */
@@ -534,6 +553,7 @@ tbody tr:last-child td {
 #rateTable {
     min-width: 100%;
 }
+
 
 /* =========================================================
    LOGIN
@@ -560,6 +580,65 @@ body:has(#loginButton) header h1 {
     font-size: 34px;
 }
 
+.login-description {
+    margin: -10px 0 20px;
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   DASHBOARD INTRO
+   ========================================================= */
+
+.dashboard-page .page-intro {
+    margin-bottom: 22px;
+}
+
+.dashboard-page .page-intro h2 {
+    margin: 0;
+    font-size: 26px;
+    color: #111827;
+}
+
+.dashboard-page .page-intro p {
+    margin: 5px 0 0;
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   BUTTON VARIANTEN
+   ========================================================= */
+
+button.primary-button {
+    background: #1f2937;
+    color: #ffffff;
+}
+
+button.primary-button:hover {
+    background: #111827;
+}
+
+button.secondary-button {
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+button.secondary-button:hover {
+    background: #f3f4f6;
+}
+
+button.danger-button {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+button.danger-button:hover {
+    background: #991b1b;
+}
+
+
 /* =========================================================
    TABLET
    ========================================================= */
@@ -583,6 +662,7 @@ body:has(#loginButton) header h1 {
         position: static;
     }
 }
+
 
 /* =========================================================
    MOBIEL
@@ -624,6 +704,11 @@ body:has(#loginButton) header h1 {
         grid-column: 1 / -1;
     }
 
+    nav a.active {
+        background: #1f2937;
+        color: #ffffff;
+    }
+
     .container {
         width: calc(100% - 20px);
         margin: 16px auto;
@@ -634,28 +719,40 @@ body:has(#loginButton) header h1 {
         gap: 10px;
     }
 
-.stat {
-    min-height: 110px;
-    padding: 15px 8px;
-    border-radius: 12px;
-    min-width: 0;
-    overflow: hidden;
-}
+    .stat {
+        min-height: 110px;
+        padding: 15px 8px;
+        border-radius: 12px;
+        min-width: 0;
+        overflow: hidden;
     }
 
-   .stat h3 {
-    font-size: 10px;
-    line-height: 1.2;
-    margin: 0 0 8px;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
+    .stat h3 {
+        font-size: 10px;
+        line-height: 1.2;
+        margin: 0 0 8px;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
 
-   .stat p {
-    font-size: clamp(17px, 5vw, 21px);
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-}
+    .stat p {
+        font-size: clamp(16px, 5vw, 21px);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .dashboard-page .page-intro {
+        margin-bottom: 18px;
+    }
+
+    .dashboard-page .page-intro h2 {
+        font-size: 23px;
+    }
+
+    .dashboard-page .page-intro p {
+        font-size: 14px;
+    }
 
     .card {
         padding: 18px 14px;
@@ -746,7 +843,20 @@ body:has(#loginButton) header h1 {
     body:has(#loginButton) header h1 {
         font-size: 29px;
     }
+
+    .page-intro {
+        margin-bottom: 18px;
+    }
+
+    .page-intro h2 {
+        font-size: 23px;
+    }
+
+    .page-intro p {
+        font-size: 14px;
+    }
 }
+
 
 /* =========================================================
    KLEINE TELEFOONS
@@ -760,10 +870,15 @@ body:has(#loginButton) header h1 {
 
     .stat {
         min-height: 95px;
+        padding: 14px 12px;
+    }
+
+    .stat h3 {
+        font-size: 11px;
     }
 
     .stat p {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     nav {
@@ -774,6 +889,7 @@ body:has(#loginButton) header h1 {
         grid-column: auto;
     }
 }
+
 
 /* =========================================================
    PRINT
@@ -812,75 +928,5 @@ body:has(#loginButton) header h1 {
 
     table {
         min-width: 0 !important;
-    }
-}
-button.primary-button {
-    background: #1f2937;
-    color: #ffffff;
-}
-
-button.primary-button:hover {
-    background: #111827;
-}
-
-button.secondary-button {
-    background: #ffffff;
-    color: #374151;
-    border: 1px solid #d1d5db;
-}
-
-button.secondary-button:hover {
-    background: #f3f4f6;
-}
-
-button.danger-button {
-    background: #b91c1c;
-    color: #ffffff;
-}
-
-   .dashboard-page .page-intro {
-    margin-bottom: 22px;
-}
-
-.dashboard-page .page-intro h2 {
-    margin: 0;
-    font-size: 26px;
-    color: #111827;
-}
-
-.dashboard-page .page-intro p {
-    margin: 5px 0 0;
-    color: #6b7280;
-}
-
-button.danger-button:hover {
-    background: #991b1b;
-}
-
-   .login-description {
-    margin: -10px 0 20px;
-    color: #6b7280;
-}
-
-   @media (max-width: 600px) {
-
-    .page-intro {
-        margin-bottom: 18px;
-    }
-
-    .page-intro h2 {
-        font-size: 23px;
-    }
-
-    .page-intro p {
-        font-size: 14px;
-    }
-
-    .dashboard-page .page-intro h2 {
-        font-size: 23px;
-    }
-
-    .dashboard-page .page-intro p {
-        font-size: 14px;
     }
 }
