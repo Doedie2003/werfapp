@@ -827,6 +827,21 @@ button.danger-button {
     color: #ffffff;
 }
 
+   .dashboard-page .page-intro {
+    margin-bottom: 22px;
+}
+
+.dashboard-page .page-intro h2 {
+    margin: 0;
+    font-size: 26px;
+    color: #111827;
+}
+
+.dashboard-page .page-intro p {
+    margin: 5px 0 0;
+    color: #6b7280;
+}
+
 button.danger-button:hover {
     background: #991b1b;
 }
