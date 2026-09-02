@@ -83,7 +83,15 @@ nav a:hover {
     background: #f3f4f6;
     color: #111827;
 }
+nav a.active {
+    background: #1f2937;
+    color: #ffffff;
+}
 
+nav a.active:hover {
+    background: #111827;
+    color: #ffffff;
+}
 nav a[href="dashboard.html"] {
     color: #1f2937;
 }
