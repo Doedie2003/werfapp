@@ -1,4 +1,3 @@
-```javascript
 // ==========================================
 // WERFAPP MATERIALEN
 // ==========================================
@@ -18,7 +17,8 @@ document.addEventListener(
 
 async function startMaterialen() {
 
-    const ingelogd = await checkMaterialenLogin();
+    const ingelogd =
+        await checkMaterialenLogin();
 
     if (!ingelogd) {
         return;
@@ -30,19 +30,20 @@ async function startMaterialen() {
 
     await loadMaterials();
 
-    document
-        .getElementById("saveMaterialButton")
-        .addEventListener(
+    const saveButton =
+        document.getElementById(
+            "saveMaterialButton"
+        );
+
+    if (saveButton) {
+
+        saveButton.addEventListener(
             "click",
             saveMaterial
         );
 
-    document
-        .getElementById("materialTable")
-        .addEventListener(
-            "click",
-            handleMaterialTableClick
-        );
+    }
+
 }
 
 
@@ -60,7 +61,8 @@ async function checkMaterialenLogin() {
         !resultaat.data.session
     ) {
 
-        window.location.href = "index.html";
+        window.location.href =
+            "index.html";
 
         return false;
     }
@@ -78,7 +80,9 @@ document.addEventListener(
     function() {
 
         const logoutButton =
-            document.getElementById("logoutButton");
+            document.getElementById(
+                "logoutButton"
+            );
 
         if (!logoutButton) {
             return;
@@ -121,7 +125,13 @@ function formatDate(date) {
             date.getDate()
         ).padStart(2, "0");
 
-    return `${jaar}-${maand}-${dag}`;
+    return (
+        jaar +
+        "-" +
+        maand +
+        "-" +
+        dag
+    );
 }
 
 
@@ -162,7 +172,7 @@ function euro(bedrag) {
 
 
 // ==========================================
-// BERICHT
+// MELDING
 // ==========================================
 
 function showMessage(
@@ -185,18 +195,6 @@ function showMessage(
     message.className =
         "message " + type;
 
-    setTimeout(
-        function() {
-
-            message.textContent =
-                "";
-
-            message.className =
-                "message";
-
-        },
-        5000
-    );
 }
 
 
@@ -215,13 +213,21 @@ async function loadSites() {
         return;
     }
 
+
     select.innerHTML =
         '<option value="">Werven laden...</option>';
+
 
     const resultaat =
         await supabaseClient
             .from("sites")
-            .select("id, name, active")
+            .select(
+                "id, name, active"
+            )
+            .eq(
+                "active",
+                true
+            )
             .order(
                 "name",
                 {
@@ -229,42 +235,39 @@ async function loadSites() {
                 }
             );
 
+
+    console.log(
+        "Resultaat werven:",
+        resultaat
+    );
+
+
     if (resultaat.error) {
 
         console.error(
-            "Fout bij laden van werven:",
+            "Fout bij laden werven:",
             resultaat.error
         );
 
         select.innerHTML =
-            '<option value="">Werven konden niet geladen worden</option>';
+            '<option value="">Fout bij laden van werven</option>';
 
         showMessage(
-            "Werven konden niet geladen worden. Controleer de browserconsole.",
+            "Werven konden niet geladen worden.",
             "error"
         );
 
         return;
     }
+
 
     materialSites =
         resultaat.data || [];
 
+
     select.innerHTML =
         '<option value="">Werf kiezen...</option>';
 
-    if (materialSites.length === 0) {
-
-        select.innerHTML =
-            '<option value="">Geen werven gevonden</option>';
-
-        showMessage(
-            "Er zijn geen werven gevonden in Supabase.",
-            "error"
-        );
-
-        return;
-    }
 
     materialSites.forEach(
         function(site) {
@@ -274,11 +277,17 @@ async function loadSites() {
                     "option"
                 );
 
+
             option.value =
                 String(site.id);
 
+
             option.textContent =
-                site.name;
+                site.name +
+                " (ID " +
+                site.id +
+                ")";
+
 
             select.appendChild(
                 option
@@ -286,6 +295,23 @@ async function loadSites() {
 
         }
     );
+
+
+    if (
+        materialSites.length === 0
+    ) {
+
+        select.innerHTML =
+            '<option value="">Geen actieve werven gevonden</option>';
+
+        showMessage(
+            "Er zijn geen actieve werven gevonden.",
+            "error"
+        );
+
+        return;
+    }
+
 }
 
 
@@ -305,9 +331,13 @@ function getSiteName(siteId) {
             }
         );
 
-    return site
-        ? site.name
-        : "Onbekende werf";
+
+    if (site) {
+        return site.name;
+    }
+
+
+    return "Onbekende werf";
 }
 
 
@@ -322,15 +352,18 @@ async function saveMaterial() {
             "materialDate"
         ).value;
 
+
     const siteId =
         document.getElementById(
             "materialSite"
         ).value;
 
+
     const description =
         document.getElementById(
             "materialDescription"
         ).value.trim();
+
 
     const price =
         Number(
@@ -387,16 +420,13 @@ async function saveMaterial() {
     }
 
 
-    const {
-        data: sessionData,
-        error: sessionError
-    } =
+    const sessionResult =
         await supabaseClient.auth.getSession();
 
 
     if (
-        sessionError ||
-        !sessionData.session
+        sessionResult.error ||
+        !sessionResult.data.session
     ) {
 
         window.location.href =
@@ -407,7 +437,7 @@ async function saveMaterial() {
 
 
     const userId =
-        sessionData.session.user.id;
+        sessionResult.data.session.user.id;
 
 
     const button =
@@ -429,12 +459,26 @@ async function saveMaterial() {
             .insert([
                 {
                     work_date: date,
-                    site_id: Number(siteId),
-                    description: description,
-                    total_price: price,
-                    user_id: userId
+
+                    site_id:
+                        Number(siteId),
+
+                    description:
+                        description,
+
+                    total_price:
+                        price,
+
+                    user_id:
+                        userId
                 }
             ]);
+
+
+    console.log(
+        "Resultaat opslaan materiaal:",
+        resultaat
+    );
 
 
     if (resultaat.error) {
@@ -445,7 +489,7 @@ async function saveMaterial() {
         );
 
         showMessage(
-            "Materialen konden niet worden opgeslagen: " +
+            "Opslaan mislukt: " +
             resultaat.error.message,
             "error"
         );
@@ -466,25 +510,19 @@ async function saveMaterial() {
     );
 
 
-    document
-        .getElementById(
-            "materialDescription"
-        )
-        .value = "";
+    document.getElementById(
+        "materialDescription"
+    ).value = "";
 
 
-    document
-        .getElementById(
-            "materialPrice"
-        )
-        .value = "";
+    document.getElementById(
+        "materialPrice"
+    ).value = "";
 
 
-    document
-        .getElementById(
-            "materialSite"
-        )
-        .value = "";
+    document.getElementById(
+        "materialSite"
+    ).value = "";
 
 
     button.disabled =
@@ -546,6 +584,11 @@ async function loadMaterials() {
         document.getElementById(
             "materialTable"
         );
+
+
+    if (!table) {
+        return;
+    }
 
 
     table.innerHTML =
@@ -693,12 +736,15 @@ function formatDisplayDate(
         return "";
     }
 
+
     const parts =
         dateString.split("-");
+
 
     if (parts.length !== 3) {
         return dateString;
     }
+
 
     return (
         parts[2] +
@@ -711,7 +757,7 @@ function formatDisplayDate(
 
 
 // ==========================================
-// TABEL ACTIES
+// VERWIJDEREN
 // ==========================================
 
 async function handleMaterialTableClick(
@@ -722,6 +768,7 @@ async function handleMaterialTableClick(
         event.target.closest(
             "button[data-id]"
         );
+
 
     if (!button) {
         return;
