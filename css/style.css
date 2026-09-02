@@ -803,3 +803,30 @@ body:has(#loginButton) header h1 {
         min-width: 0 !important;
     }
 }
+button.primary-button {
+    background: #1f2937;
+    color: #ffffff;
+}
+
+button.primary-button:hover {
+    background: #111827;
+}
+
+button.secondary-button {
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+button.secondary-button:hover {
+    background: #f3f4f6;
+}
+
+button.danger-button {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+button.danger-button:hover {
+    background: #991b1b;
+}
