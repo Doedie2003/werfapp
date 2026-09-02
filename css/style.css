@@ -845,3 +845,8 @@ button.danger-button {
 button.danger-button:hover {
     background: #991b1b;
 }
+
+   .login-description {
+    margin: -10px 0 20px;
+    color: #6b7280;
+}
